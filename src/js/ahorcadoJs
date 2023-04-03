@@ -47,6 +47,26 @@
         return arrPalabra;
     };
 
+    function valida_palabra (palabramin){
+
+        const pattern = new RegExp (" ");
+        
+        if(!pattern.test(palabramin)){
+
+            console.log = ("Solo puedes ingresar una palabra!!!..");
+            return false;
+
+        }else{
+
+
+    }
+
+
+
+
+
+
+
 
     function creaTablero(arrPalabra){
         let tablero = "";
