@@ -1,0 +1,114 @@
+<script>
+
+    const palabrAdivinar = ingresarPalabra();
+    let arrCoincidencias = []; // esto es para corregir!.....
+
+    /*El Document método querySelector() devuelve el primero Element dentro del documento
+    que coincide con el selector o grupo de 
+    selectores especificado. Si no se encuentran coincidencias, se devuelve null.*/
+    const letra = document.querySelector('input');
+
+    //capturó todo lo que entró en input y letra va a guardar lo que devuelva la función
+    letra.oninput = function(){
+        soloLetras(letra.value, palabrAdivinar);
+    };
+
+
+    function ingresarPalabra(){
+        const palabra = prompt("Ingresa una palabra para adivinar!");
+
+        /*El método split() divide un objeto de tipo String en un array 
+        de cadenas.*/
+        const arrPalabra = palabra.split("");
+
+        //console.log  Muestra un mensaje en la consola web ???
+        console.log(arrPalabra);
+
+        /*El getElementById()método de la Document interfaz 
+        devuelve un Element objeto que representa el elemento 
+        cuya id propiedad coincide con la cadena especificada.
+
+        La propiedad Element.innerHTML devuelve 
+        o establece la sintaxis HTML*/
+        document.getElementById("tablero").innerHTML = `
+            <table border="1">
+                <tr>
+                    ${creaTablero(arrPalabra)}    
+                </tr>    
+            </table>
+        `;
+        return arrPalabra;
+    };
+
+
+    function creaTablero(arrPalabra){
+        let tablero = "";
+
+        /*El método forEach()ejecuta 
+        la función indicada una vez por cada elemento del arreglo.*/
+        //Función flecha letra=>argumento; lo siguiente es el return
+        
+        arrPalabra.forEach(letra => {
+        
+            tablero = tablero + "<td> ? </td>";
+        });
+        return tablero;
+    }
+
+    function soloLetras(cadena, palabrAdivinar){
+
+        //El objeto RegExp se utiliza para hacer coincidir texto con un patrón.
+        const pattern = new RegExp('[a-zA-Z]');
+        
+        /*El test()método ejecuta una búsqueda de una coincidencia entre una expresión 
+        regular y una cadena especificada. 
+        Devuelve true si hay una coincidencia; false de lo contrario.*/
+        console.log(pattern.test(cadena));
+        
+        if(!pattern.test(cadena)){
+
+            document.querySelector('input').value = "";
+            document.getElementById("status").innerHTML = "Solo puedes ingresar letras!!!..";
+            return false;
+
+        }else{
+
+            document.getElementById("tablero").innerHTML = `
+            <table border="1">
+                <tr>
+                    ${buscarCoincidencia(cadena,palabrAdivinar)}    
+                </tr>    
+            </table>
+        `;
+            return true;
+        }
+    }
+
+    function buscarCoincidencia(letra, arrPalabra){
+        let tablero = "";
+        let coincidencias = 0;
+
+        arrPalabra.forEach(caracter => {
+        
+            if(caracter == letra){
+                tablero = tablero + "<td>"+ caracter +" </td>"; 
+                coincidencias = coincidencias + 1;
+            }else{
+                tablero = tablero + "<td> ? </td>";
+            }
+            leyendaCoincidencia(coincidencias);
+        });
+        return tablero;
+    }
+
+    function leyendaCoincidencia(coincidencias){
+        if(coincidencias > 0){
+            document.getElementById("status").innerHTML = `Hubo ${coincidencias} coincidencias!!!`;
+        }else{
+            document.getElementById("status").innerHTML = `No hubo coinciencias :(`;
+        }
+    }
+
+    
+    
+</script>
