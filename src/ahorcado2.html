@@ -35,7 +35,7 @@
     selectores especificado. Si no se encuentran coincidencias, se devuelve null.*/
     const letra = document.querySelector('input');
 
-    //El evento oninput y value ?????
+    //capturó todo lo que entró en input y letra va a guardar lo que devuelva la función
     letra.oninput = function(){
         soloLetras(letra.value, palabrAdivinar);
     };
