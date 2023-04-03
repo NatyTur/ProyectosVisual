@@ -24,17 +24,18 @@
      
     </body>
 </html>
+
 <script>
 
     const palabrAdivinar = ingresarPalabra();
-    let arrCoincidencias = []; // esto es para corregir!
+    let arrCoincidencias = []; // esto es para corregir!.....
 
     /*El Document método querySelector() devuelve el primero Element dentro del documento
     que coincide con el selector o grupo de 
     selectores especificado. Si no se encuentran coincidencias, se devuelve null.*/
     const letra = document.querySelector('input');
 
-    //El evento oninput se produce cuando un elemento recibe la entrada del usuario.
+    //El evento oninput y value ?????
     letra.oninput = function(){
         soloLetras(letra.value, palabrAdivinar);
     };
@@ -54,7 +55,7 @@
         devuelve un Element objeto que representa el elemento 
         cuya id propiedad coincide con la cadena especificada.
 
-        La propiedad Element.innerHTMLdevuelve 
+        La propiedad Element.innerHTML devuelve 
         o establece la sintaxis HTML*/
         document.getElementById("tablero").innerHTML = `
             <table border="1">
@@ -113,7 +114,9 @@
     function buscarCoincidencia(letra, arrPalabra){
         let tablero = "";
         let coincidencias = 0;
+
         arrPalabra.forEach(caracter => {
+        
             if(caracter == letra){
                 tablero = tablero + "<td>"+ caracter +" </td>"; 
                 coincidencias = coincidencias + 1;
