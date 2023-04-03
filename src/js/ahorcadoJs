@@ -15,11 +15,18 @@
 
 
     function ingresarPalabra(){
+
+
         const palabra = prompt("Ingresa una palabra para adivinar!");
 
         /*El método split() divide un objeto de tipo String en un array 
         de cadenas.*/
-        const arrPalabra = palabra.split("");
+
+        let palabramin =palabra.toLowerCase(); 
+        
+        //convierto la palabra en minuscula -
+        let una_variable=valida_palabra(palabramin);
+        const arrPalabra = palabramin.split("");
 
         //console.log  Muestra un mensaje en la consola web ???
         console.log(arrPalabra);
@@ -57,7 +64,7 @@
 
     function soloLetras(cadena, palabrAdivinar){
 
-        //El objeto RegExp se utiliza para hacer coincidir texto con un patrón.
+        //El objeto RegExp se utiliza para hacer que solo sean letras.
         const pattern = new RegExp('[a-zA-Z]');
         
         /*El test()método ejecuta una búsqueda de una coincidencia entre una expresión 
