@@ -1,4 +1,4 @@
-<script>
+
 
     const palabrAdivinar = ingresarPalabra();
     let arrCoincidencias = []; // esto es para corregir!.....
@@ -111,4 +111,3 @@
 
     
     
-</script>
