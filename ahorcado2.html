@@ -29,10 +29,16 @@
     const palabrAdivinar = ingresarPalabra();
     let arrCoincidencias = []; // esto es para corregir!
 
+    /*El Document método querySelector() devuelve el primero Element dentro del documento
+    que coincide con el selector o grupo de 
+    selectores especificado. Si no se encuentran coincidencias, se devuelve null.*/
     const letra = document.querySelector('input');
+
+    //El evento oninput se produce cuando un elemento recibe la entrada del usuario.
     letra.oninput = function(){
         soloLetras(letra.value, palabrAdivinar);
     };
+
 
     function ingresarPalabra(){
         const palabra = prompt("Ingresa una palabra para adivinar!");
@@ -60,6 +66,7 @@
         return arrPalabra;
     };
 
+
     function creaTablero(arrPalabra){
         let tablero = "";
 
@@ -75,13 +82,23 @@
     }
 
     function soloLetras(cadena, palabrAdivinar){
+
+        //El objeto RegExp se utiliza para hacer coincidir texto con un patrón.
         const pattern = new RegExp('[a-zA-Z]');
+        
+        /*El test()método ejecuta una búsqueda de una coincidencia entre una expresión 
+        regular y una cadena especificada. 
+        Devuelve true si hay una coincidencia; false de lo contrario.*/
         console.log(pattern.test(cadena));
+        
         if(!pattern.test(cadena)){
+
             document.querySelector('input').value = "";
             document.getElementById("status").innerHTML = "Solo puedes ingresar letras!!!..";
             return false;
+
         }else{
+
             document.getElementById("tablero").innerHTML = `
             <table border="1">
                 <tr>
