@@ -41,8 +41,15 @@
         de cadenas.*/
         const arrPalabra = palabra.split("");
 
-        //Muestra un mensaje en la consola web
+        //console.log  Muestra un mensaje en la consola web ???
         console.log(arrPalabra);
+
+        /*El getElementById()método de la Document interfaz 
+        devuelve un Element objeto que representa el elemento 
+        cuya id propiedad coincide con la cadena especificada.
+
+        La propiedad Element.innerHTMLdevuelve 
+        o establece la sintaxis HTML*/
         document.getElementById("tablero").innerHTML = `
             <table border="1">
                 <tr>
@@ -55,9 +62,14 @@
 
     function creaTablero(arrPalabra){
         let tablero = "";
+
+        /*El método forEach()ejecuta 
+        la función indicada una vez por cada elemento del arreglo.*/
+        //Función flecha letra=>argumento; lo siguiente es el return
+        
         arrPalabra.forEach(letra => {
-            tablero = tablero + "<td> ? </td>";
         });
+            tablero = tablero + "<td> ? </td>";
         return tablero;
     }
 
