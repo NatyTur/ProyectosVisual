@@ -36,7 +36,12 @@
 
     function ingresarPalabra(){
         const palabra = prompt("Ingresa una palabra para adivinar!");
+
+        /*El método split() divide un objeto de tipo String en un array 
+        de cadenas.*/
         const arrPalabra = palabra.split("");
+
+        //Muestra un mensaje en la consola web
         console.log(arrPalabra);
         document.getElementById("tablero").innerHTML = `
             <table border="1">
