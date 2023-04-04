@@ -18,19 +18,13 @@
 
 
         const palabra = prompt("Ingresa una palabra para adivinar!");
-
+        const arrPalabra = palabra.split("");
         /*El método split() divide un objeto de tipo String en un array 
         de cadenas.*/
 
-        let palabramin =palabra.toLowerCase(); 
-        
-        //convierto la palabra en minuscula -
-        let una_variable=valida_palabra(palabramin);
-        const arrPalabra = palabramin.split("");
-
         //console.log  Muestra un mensaje en la consola web ???
         console.log(arrPalabra);
-
+        
         /*El getElementById()método de la Document interfaz 
         devuelve un Element objeto que representa el elemento 
         cuya id propiedad coincide con la cadena especificada.
@@ -47,26 +41,7 @@
         return arrPalabra;
     };
 
-    function valida_palabra (palabramin){
-
-        const pattern = new RegExp (" ");
-        
-        if(!pattern.test(palabramin)){
-
-            console.log = ("Solo puedes ingresar una palabra!!!..");
-            return false;
-
-        }else{
-
-
-    }
-
-
-
-
-
-
-
+    
 
     function creaTablero(arrPalabra){
         let tablero = "";
@@ -136,5 +111,6 @@
         }
     }
 
+    
     
     
