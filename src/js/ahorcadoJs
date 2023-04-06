@@ -1,33 +1,36 @@
 
-
+    //variables y constantes globales
     const palabrAdivinar = ingresarPalabra();
-    let arrCoincidencias = []; // esto es para corregir!.....
+    let arrCoincidencias = []; 
+    let intentos = 6;
 
-    /*El Document método querySelector() devuelve el primero Element dentro del documento
+    /*El Document método querySelector() devuelve el primer Element dentro del documento
     que coincide con el selector o grupo de 
-    selectores especificado. Si no se encuentran coincidencias, se devuelve null.*/
+    selectores especificado. Si no se encuentran coincidencias, devuelve null.*/
     const letra = document.querySelector('input');
 
-    //capturó todo lo que entró en input y letra va a guardar lo que devuelva la función
+    //oninput es un evento que se dispara con cualquier entrada por pantalla
     letra.oninput = function(){
-        soloLetras(letra.value, palabrAdivinar);
+        soloLetras(letra.value, palabrAdivinar, arrCoincidencias);
     };
 
+
+    
 
     function ingresarPalabra(){
 
 
         const palabra = prompt("Ingresa una palabra para adivinar!");
-        const arrPalabra = palabra.split("");
-        /*El método split() divide un objeto de tipo String en un array 
+       
+       /*El método split() divide un objeto de tipo String en un array 
         de cadenas.*/
-
-        //console.log  Muestra un mensaje en la consola web ???
+        const arrPalabra = palabra.split("");
+        
         console.log(arrPalabra);
         
         /*El getElementById()método de la Document interfaz 
         devuelve un Element objeto que representa el elemento 
-        cuya id propiedad coincide con la cadena especificada.
+        cuya id coincide con la cadena especificada.
 
         La propiedad Element.innerHTML devuelve 
         o establece la sintaxis HTML*/
@@ -48,7 +51,7 @@
 
         /*El método forEach()ejecuta 
         la función indicada una vez por cada elemento del arreglo.*/
-        //Función flecha letra=>argumento; lo siguiente es el return
+        //Función flecha letra(argumento); lo siguiente es el return
         
         arrPalabra.forEach(letra => {
         
@@ -57,16 +60,16 @@
         return tablero;
     }
 
-    function soloLetras(cadena, palabrAdivinar){
+    function soloLetras(cadena, palabrAdivinar,arrCoincidencias){
 
         //El objeto RegExp se utiliza para hacer que solo sean letras.
         const pattern = new RegExp('[a-zA-Z]');
         
-        /*El test()método ejecuta una búsqueda de una coincidencia entre una expresión 
-        regular y una cadena especificada. 
-        Devuelve true si hay una coincidencia; false de lo contrario.*/
+        
         console.log(pattern.test(cadena));
         
+        /*El test()método:
+        Devuelve un valor booleano que indica si existe o no un patrón en una cadena buscada.*/
         if(!pattern.test(cadena)){
 
             document.querySelector('input').value = "";
@@ -78,37 +81,79 @@
             document.getElementById("tablero").innerHTML = `
             <table border="1">
                 <tr>
-                    ${buscarCoincidencia(cadena,palabrAdivinar)}    
+                    ${buscarCoincidencia(cadena,palabrAdivinar,arrCoincidencias)}    
                 </tr>    
             </table>
         `;
+
+        //limpia el cuadro de texto para ingresar otra letra
+            document.querySelector('input').value = "";
             return true;
         }
     }
 
-    function buscarCoincidencia(letra, arrPalabra){
+    function buscarCoincidencia(letra, arrPalabra,arrCoincidencias){
         let tablero = "";
         let coincidencias = 0;
+        let exito = true;
 
-        arrPalabra.forEach(caracter => {
         
-            if(caracter == letra){
+        arrPalabra.forEach(caracter => {
+            
+            //includes sirve para saber si el caracter está en el array, entonces devuelve un true
+            
+
+            //if: filtra si el caracter ya fue identificado
+            if(arrCoincidencias.includes(caracter)){
+                tablero = tablero + "<td>"+ caracter +" </td>";
+
+            /*else if: si no fue identificado guarda el caracter en arrCoincidencias e incrementa coincidencias 
+            para registrarlas y luego informar en la función leyendaCoincidencia*/ 
+            } else if(caracter == letra){              
                 tablero = tablero + "<td>"+ caracter +" </td>"; 
+                arrCoincidencias.push(caracter);//push inserta al final del array cada caracter
                 coincidencias = coincidencias + 1;
-            }else{
+            
+            //else: no hubo coincidencia, pongo la variable exito en false para luego evaluar los intentos
+            } else{
                 tablero = tablero + "<td> ? </td>";
+                exito = false;
             }
-            leyendaCoincidencia(coincidencias);
+            
+            
+            
         });
+
+        leyendaCoincidencia(coincidencias, letra);
+
+        //si no hubo aciertos va perdiendo intentos
+        if(coincidencias==0)
+        {intentos--;}
+        console.log(arrCoincidencias + " " + intentos);//imprimo la letra que coincide e intentos que quedan
+
+        //
+        if(exito){ leyendaFelicitaciones(true);}
+        else if(intentos==0) {leyendaFelicitaciones(false);}
+            
+               
         return tablero;
     }
 
-    function leyendaCoincidencia(coincidencias){
+    function leyendaCoincidencia(coincidencias, caracter){
         if(coincidencias > 0){
-            document.getElementById("status").innerHTML = `Hubo ${coincidencias} coincidencias!!!`;
+            document.getElementById("status").innerHTML = `Hubo ${coincidencias} coincidencias con la letra ` + caracter;
         }else{
-            document.getElementById("status").innerHTML = `No hubo coinciencias :(`;
+            document.getElementById("status").innerHTML = `No hubo coinciencias nuevas con la letra ` + caracter + `, te quedan ` + (intentos-1) + ` intentos` ;
         }
+    }
+    function leyendaFelicitaciones(gano){
+        
+        if(gano){
+            document.getElementById("status").innerHTML = `Felicitaciones. Ganaste!!!`;
+        }else{
+            document.getElementById("status").innerHTML = `Se acabaron los intentos. Perdiste`;
+        }
+        
     }
 
     
