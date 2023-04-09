@@ -4,6 +4,8 @@
     let arrCoincidencias = []; 
     let intentos = 6;
 
+    
+
     /*El Document método querySelector() devuelve el primer Element dentro del documento
     que coincide con el selector o grupo de 
     selectores especificado. Si no se encuentran coincidencias, devuelve null.*/
@@ -128,7 +130,19 @@
 
         //si no hubo aciertos va perdiendo intentos
         if(coincidencias==0)
-        {intentos--;}
+        {intentos--;
+
+            //segun el numero de intento cambio la direccion de la imagen
+            if(intentos==5){document.getElementById('imagen').src = "img/ahorcado5.png"; }
+            if(intentos==4){document.getElementById('imagen').src = "img/ahorcado4.png"; }
+            if(intentos==3){document.getElementById('imagen').src = "img/ahorcado3.png"; }
+            if(intentos==2){document.getElementById('imagen').src = "img/ahorcado2.png"; }
+            if(intentos==1){document.getElementById('imagen').src = "img/ahorcado1.png"; }
+            if(intentos==0){document.getElementById('imagen').src = "img/ahorcado0.png"; 
+            casilla.disabled =true; //deshabilito el input
+            btn.disabled =false;} //habilito el boton de volver a jugar
+        
+        }
         console.log(arrCoincidencias + " " + intentos);//imprimo la letra que coincide e intentos que quedan
 
         //
@@ -149,9 +163,18 @@
     function leyendaFelicitaciones(gano){
         
         if(gano){
+            document.getElementById('status').style.color="green"; //letra verde
+            document.getElementById('status').style.backgroundColor="black"; // fondo negro
             document.getElementById("status").innerHTML = `Felicitaciones. Ganaste!!!`;
+            casilla.disabled =true;
+            btn.disabled =false;
+            btn.addEventListener("click",function(){location.reload();}) //recarga la pagina 
+
         }else{
+            document.getElementById('status').style.color="red";//letra roja
+            document.getElementById('status').style.backgroundColor="black"; //fondo negro
             document.getElementById("status").innerHTML = `Se acabaron los intentos. Perdiste`;
+            btn.addEventListener("click",function(){location.reload();}) //recarga la pagina 
         }
         
     }
