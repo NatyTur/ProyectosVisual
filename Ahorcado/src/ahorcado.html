@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <br><br>
+        <title>Juego Ahorcado</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Carter+One&family=Original+Surfer&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/estilos.css"/>
+        <h1>Juego del Ahorcado</h1>
+    </head>
+    <body>
+        <br>
+        
+        <h4 id="visor"><span class="blancocuadro"> Adivina la palabra!</span></h4>
+        
+        <main>
+          <div>
+            <br><br>
+            <div id="tablero"></div>
+            <br/>
+            <h4 id="visor"><span class="blancocuadro">Ingresa una letra...</span></h4>
+     
+            <div id="cuadro" class="casillaIngreso">            
+                <input id="entrada" type="text" name="nombre" maxlength="1" />
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div id="status" class="blancocuadro"></div>
+          </div>  
+            <img id="imagen" class="imag" src="img/ahorcado6.png"/>
+        </main>     
+        <button id="jugar" >Reiniciar</button>
+    </body>
+    <script src="js/ahorcado.js"></script>
+</html>

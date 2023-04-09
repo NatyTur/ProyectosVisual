@@ -4,7 +4,10 @@
     let arrCoincidencias = []; 
     let intentos = 6;
 
-    
+    const btn = document.getElementById('jugar');
+    btn.disabled =true;
+    const casilla = document.getElementById('entrada');
+    casilla.disabled =false;
 
     /*El Document método querySelector() devuelve el primer Element dentro del documento
     que coincide con el selector o grupo de 
