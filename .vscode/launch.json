@@ -5,11 +5,13 @@
     "version": "0.2.0",
     "configurations": [
 
+    
+
         {
             "type": "chrome",
             "request": "launch",
             "name": "Open ahorcado2.html",
-            "file": "c:\\Users\\Lautaro\\Documents\\ProyectosVisual\\src\\ahorcado.html"
+            "file": "c:\\Users\\Lautaro\\Documents\\ProyectosVisual\\Ahorcado\\src\\ahorcado.html"
         }
     ]
 }
